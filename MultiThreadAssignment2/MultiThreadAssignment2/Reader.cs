@@ -15,6 +15,7 @@ namespace MultiThreadAssignment2
         Panel panel;
         Graphics g;
 
+
         bool active = true;
 
         public Reader(Panel panel)
@@ -22,12 +23,14 @@ namespace MultiThreadAssignment2
             this.panel = panel;
             g = panel.CreateGraphics();
         }
+        /// <summary>
+        /// Reads and draws the char that writer has written to the common Buffer
+        /// </summary>
         public void Update()
         {
             while (active)
             {
                 Brush brush = new SolidBrush(Color.DarkGreen);
-                panel.Invalidate();
                 g.DrawString("" + CharacterBuffer.charToDisplaySafe, new Font("Arial", 16), brush, 10f, 10f);
             }
         }

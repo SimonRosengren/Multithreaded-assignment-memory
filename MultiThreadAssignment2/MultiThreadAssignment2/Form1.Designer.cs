@@ -36,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.explanationLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.answerBox = new System.Windows.Forms.TextBox();
             this.submitButton = new System.Windows.Forms.Button();
             this.resultPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
@@ -111,12 +111,12 @@
             this.explanationLabel.TabIndex = 5;
             this.explanationLabel.Text = "Enter the characters that you just saw";
             // 
-            // textBox1
+            // answerBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 340);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(182, 20);
-            this.textBox1.TabIndex = 6;
+            this.answerBox.Location = new System.Drawing.Point(12, 340);
+            this.answerBox.Name = "answerBox";
+            this.answerBox.Size = new System.Drawing.Size(182, 20);
+            this.answerBox.TabIndex = 6;
             // 
             // submitButton
             // 
@@ -126,6 +126,7 @@
             this.submitButton.TabIndex = 7;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = true;
+            this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
             // resultPanel
             // 
@@ -141,7 +142,7 @@
             this.ClientSize = new System.Drawing.Size(552, 557);
             this.Controls.Add(this.resultPanel);
             this.Controls.Add(this.submitButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.answerBox);
             this.Controls.Add(this.explanationLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -167,7 +168,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label explanationLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox answerBox;
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.Panel resultPanel;
     }

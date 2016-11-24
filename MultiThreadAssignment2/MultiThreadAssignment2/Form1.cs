@@ -19,18 +19,23 @@ namespace MultiThreadAssignment2
         Reader reader;
         Writer writer;
 
-        
+
+
 
         public Form1()
         {
             InitializeComponent();
             reader = new Reader(characterPanel);
-            writer = new Writer();
+            writer = new Writer(characterPanel, answerBox, submitButton);
             FillComboBoxes();
+            answerBox.Enabled = false;
+            submitButton.Enabled = false;
+            
         }
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
+            startGameButton.Enabled = false;
             writer.SetAttributes((int)comboBox1.SelectedItem, (int)comboBox2.SelectedItem); //Unsafe att casta om till int?
 
             thread1 = new Thread(writer.StartAddingCharacters);
@@ -54,5 +59,24 @@ namespace MultiThreadAssignment2
             comboBox2.Items.Add(4000);
             comboBox2.Items.Add(5000);
         }
+
+        private void submitButton_Click(object sender, EventArgs e)
+        {
+            Brush brush = new SolidBrush(Color.DarkGreen);
+            Console.WriteLine(CharacterBuffer.finalString);
+
+
+            if (answerBox.Text == CharacterBuffer.finalString)
+            {
+                resultPanel.CreateGraphics().DrawString("CORRERCT!", new Font("Arial", 16), brush, 10f, 10f);              
+            }
+            else
+                resultPanel.CreateGraphics().DrawString("INCORRECT: \nThe answer was: \n" + CharacterBuffer.finalString, new Font("Arial", 16), brush, 10f, 10f);   
+        }
+        private void Form1_Closing(object sender, EventArgs e)
+        {
+            System.Environment.Exit(System.Environment.ExitCode);
+        }
+
     }
 }
