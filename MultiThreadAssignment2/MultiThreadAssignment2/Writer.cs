@@ -10,8 +10,8 @@ namespace MultiThreadAssignment2
 {
     class Writer
     {
-        Panel panel; 
         TextBox answerBox;
+        TextBox displayBox;
         Button submitButton;
 
         string allowedChars = "abcdefghijklmnopqrstuvxyz123456789!#¤%&/()";
@@ -24,11 +24,11 @@ namespace MultiThreadAssignment2
         /// <summary>
         /// Constructor.
         /// </summary>
-        public Writer(Panel panel, TextBox answerBox, Button submitButton)
-        {
-            this.panel = panel;
+        public Writer(TextBox answerBox, Button submitButton, TextBox displayBox)
+        {           
             rnd = new Random();
             isActive = true;
+            this.displayBox = displayBox;
             this.answerBox = answerBox;
             this.submitButton = submitButton;
         }
@@ -56,12 +56,11 @@ namespace MultiThreadAssignment2
                 {
                     CharacterBuffer.setChar(allowedChars[rnd.Next(1, 40)]);
                     Thread.Sleep(displayTimer);
-                    panel.BeginInvoke((Action)delegate() { panel.Invalidate(); }); //Funkar bara ibland?   
                 }
             }
+            displayBox.BeginInvoke((Action)delegate() { displayBox.Text = ""; });
             answerBox.BeginInvoke((Action)delegate() { answerBox.Enabled = true; });
             submitButton.BeginInvoke((Action)delegate() { submitButton.Enabled = true; });
-            panel.BeginInvoke((Action)delegate() { panel.Invalidate(); }); //Här vägrar vi tydligen att lyda
         }
     }
 }

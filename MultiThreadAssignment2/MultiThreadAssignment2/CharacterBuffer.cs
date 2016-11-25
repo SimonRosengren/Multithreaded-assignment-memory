@@ -20,28 +20,10 @@ namespace MultiThreadAssignment2
         /// Locks the process of wrtining and reading to the buffer
         /// </summary>
         public static char charToDisplay;
-        public static char charToDisplaySafe;/*
-        {
-            get
-            {
-                lock (myLock)
-                {
-                    charWritten = false;
-                    return charToDisplay;
-                }
-            }
-            set
-            {
-                lock (myLock)
-                {
-                    charToDisplay = value;
-                    chars[currentNrOfChars] = value;
-                    currentNrOfChars++;//För att sedan kunna kolla mot kön vilka siffror vi visat
-                    finalString = new string(chars);
-                    charWritten = true;
-                }
-            }
-        }*/
+        public static char charToDisplaySafe;
+        /// <summary>
+        /// Sets the char to value if it is not already set or if it is already read
+        /// </summary>
         public static bool setChar(char c)
         {
             if (charWritten)
@@ -50,21 +32,30 @@ namespace MultiThreadAssignment2
             }
             else
             {
-                charToDisplaySafe = c;
-                chars[currentNrOfChars] = c;
-                currentNrOfChars++;//För att sedan kunna kolla mot kön vilka siffror vi visat
-                finalString = new string(chars);
-                charWritten = true;
-                return true;
+                lock (myLock)
+                {
+                    charToDisplaySafe = c;
+                    chars[currentNrOfChars] = c;
+                    currentNrOfChars++;//För att sedan kunna kolla mot kön vilka siffror vi visat
+                    finalString = new string(chars);
+                    charWritten = true;
+                    return true;
+                }
             }
         }
+        /// <summary>
+        /// Returns the value of char if it is not already read
+        /// </summary>
         public static bool getChar(out char c)
         {
             if (charWritten)
             {
-                c = charToDisplaySafe;
-                charWritten = false;
-                return true;
+                lock (myLock)
+                {
+                    c = charToDisplaySafe;
+                    charWritten = false;
+                    return true;                    
+                }
             }
             c = '0';
             return false;

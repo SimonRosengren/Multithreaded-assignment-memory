@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.startGameButton = new System.Windows.Forms.Button();
-            this.characterPanel = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +38,7 @@
             this.answerBox = new System.Windows.Forms.TextBox();
             this.submitButton = new System.Windows.Forms.Button();
             this.resultPanel = new System.Windows.Forms.Panel();
+            this.displayTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // startGameButton
@@ -50,13 +50,6 @@
             this.startGameButton.Text = "Start Game";
             this.startGameButton.UseVisualStyleBackColor = true;
             this.startGameButton.Click += new System.EventHandler(this.startGameButton_Click);
-            // 
-            // characterPanel
-            // 
-            this.characterPanel.Location = new System.Drawing.Point(325, 12);
-            this.characterPanel.Name = "characterPanel";
-            this.characterPanel.Size = new System.Drawing.Size(200, 184);
-            this.characterPanel.TabIndex = 1;
             // 
             // comboBox1
             // 
@@ -135,11 +128,20 @@
             this.resultPanel.Size = new System.Drawing.Size(200, 100);
             this.resultPanel.TabIndex = 8;
             // 
+            // displayTextBox
+            // 
+            this.displayTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.displayTextBox.Location = new System.Drawing.Point(325, 150);
+            this.displayTextBox.Name = "displayTextBox";
+            this.displayTextBox.Size = new System.Drawing.Size(200, 46);
+            this.displayTextBox.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(552, 557);
+            this.Controls.Add(this.displayTextBox);
             this.Controls.Add(this.resultPanel);
             this.Controls.Add(this.submitButton);
             this.Controls.Add(this.answerBox);
@@ -149,7 +151,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.characterPanel);
             this.Controls.Add(this.startGameButton);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -161,7 +162,6 @@
         #endregion
 
         private System.Windows.Forms.Button startGameButton;
-        private System.Windows.Forms.Panel characterPanel;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label1;
@@ -171,6 +171,7 @@
         private System.Windows.Forms.TextBox answerBox;
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.Panel resultPanel;
+        private System.Windows.Forms.TextBox displayTextBox;
     }
 }
 

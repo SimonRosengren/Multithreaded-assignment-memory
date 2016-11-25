@@ -12,16 +12,15 @@ namespace MultiThreadAssignment2
 {
     class Reader
     {
-        Panel panel;
-        Graphics g;
+        
+        TextBox tb;
 
 
         bool active = true;
 
-        public Reader(Panel panel)
+        public Reader(TextBox tb)
         {
-            this.panel = panel;
-            g = panel.CreateGraphics();
+            this.tb = tb;
         }
         /// <summary>
         /// Reads and draws the char that writer has written to the common Buffer
@@ -30,11 +29,10 @@ namespace MultiThreadAssignment2
         {            
             while (active)
             {
-                Brush brush = new SolidBrush(Color.DarkGreen);
                 char c;
                 if (CharacterBuffer.getChar(out c))
                 {
-                    g.DrawString("" + c, new Font("Arial", 16), brush, 10f, 10f);
+                    tb.BeginInvoke((Action)delegate() { tb.Text = "" + c; });
                 }
             }
         }

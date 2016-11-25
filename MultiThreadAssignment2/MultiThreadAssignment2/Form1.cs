@@ -25,8 +25,8 @@ namespace MultiThreadAssignment2
         public Form1()
         {
             InitializeComponent();
-            reader = new Reader(characterPanel);
-            writer = new Writer(characterPanel, answerBox, submitButton);
+            reader = new Reader(displayTextBox);
+            writer = new Writer(answerBox, submitButton, displayTextBox);
             FillComboBoxes();
             answerBox.Enabled = false;
             submitButton.Enabled = false;
