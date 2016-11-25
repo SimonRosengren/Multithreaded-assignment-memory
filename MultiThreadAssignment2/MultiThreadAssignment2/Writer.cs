@@ -10,7 +10,7 @@ namespace MultiThreadAssignment2
 {
     class Writer
     {
-        Panel panel; //To fix blinking text problem by only updating the panel when new number is presented
+        Panel panel; 
         TextBox answerBox;
         Button submitButton;
 
@@ -21,7 +21,9 @@ namespace MultiThreadAssignment2
         public int displayTimer = 1000;
 
         public bool isActive;
-
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Writer(Panel panel, TextBox answerBox, Button submitButton)
         {
             this.panel = panel;
@@ -30,23 +32,36 @@ namespace MultiThreadAssignment2
             this.answerBox = answerBox;
             this.submitButton = submitButton;
         }
+        /// <summary>
+        /// Sets the needed attribrutes for writer. 
+        /// nrOfCharacters is the amount of times it should produce a new char
+        /// displaytimer is the amount of time that should pass between chaning chars 
+        /// </summary>
         public void SetAttributes(int nrOfCharacters, int displayTimer)
         {
             this.nrOfCharacters = nrOfCharacters;
             this.displayTimer = displayTimer;
             CharacterBuffer.SetNrOfChars(nrOfCharacters);
         }
+        /// <summary>
+        /// Loops the amount of time we need to change char
+        /// Picks a random value that represents an index in out allowedChars-string
+        /// When finished it inovkes the Form1 to enable the answer-bar
+        /// </summary>
         public void StartAddingCharacters()
         {          
-            for (int i = 0; i < nrOfCharacters; i++)
+            while (CharacterBuffer.currentNrOfChars != nrOfCharacters)
             {
-                CharacterBuffer.charToDisplaySafe = allowedChars[rnd.Next(1, 40)];
-                Thread.Sleep(displayTimer);
-                panel.BeginInvoke((Action)delegate() { panel.Invalidate(); }); //Funkar bara ibland?
+                if (!CharacterBuffer.charWritten)
+                {
+                    CharacterBuffer.setChar(allowedChars[rnd.Next(1, 40)]);
+                    Thread.Sleep(displayTimer);
+                    panel.BeginInvoke((Action)delegate() { panel.Invalidate(); }); //Funkar bara ibland?   
+                }
             }
             answerBox.BeginInvoke((Action)delegate() { answerBox.Enabled = true; });
             submitButton.BeginInvoke((Action)delegate() { submitButton.Enabled = true; });
-            panel.BeginInvoke((Action)delegate() { panel.Invalidate(); });
+            panel.BeginInvoke((Action)delegate() { panel.Invalidate(); }); //Här vägrar vi tydligen att lyda
         }
     }
 }

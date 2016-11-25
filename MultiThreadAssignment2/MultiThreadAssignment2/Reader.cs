@@ -27,11 +27,15 @@ namespace MultiThreadAssignment2
         /// Reads and draws the char that writer has written to the common Buffer
         /// </summary>
         public void Update()
-        {
+        {            
             while (active)
             {
                 Brush brush = new SolidBrush(Color.DarkGreen);
-                g.DrawString("" + CharacterBuffer.charToDisplaySafe, new Font("Arial", 16), brush, 10f, 10f);
+                char c;
+                if (CharacterBuffer.getChar(out c))
+                {
+                    g.DrawString("" + c, new Font("Arial", 16), brush, 10f, 10f);
+                }
             }
         }
     }
