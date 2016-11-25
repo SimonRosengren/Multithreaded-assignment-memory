@@ -11,10 +11,8 @@ using System.Drawing;
 namespace MultiThreadAssignment2
 {
     class Reader
-    {
-        
+    {        
         TextBox tb;
-
 
         bool active = true;
 

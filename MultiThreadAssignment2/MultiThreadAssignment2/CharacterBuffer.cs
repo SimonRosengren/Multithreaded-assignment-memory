@@ -26,11 +26,8 @@ namespace MultiThreadAssignment2
         /// </summary>
         public static bool setChar(char c)
         {
-            if (charWritten)
-            {
-                return false;                
-            }
-            else
+            bool b = false;
+            if (!charWritten)
             {
                 lock (myLock)
                 {
@@ -39,9 +36,10 @@ namespace MultiThreadAssignment2
                     currentNrOfChars++;//För att sedan kunna kolla mot kön vilka siffror vi visat
                     finalString = new string(chars);
                     charWritten = true;
-                    return true;
+                    b = true;
                 }
             }
+            return b;
         }
         /// <summary>
         /// Returns the value of char if it is not already read
